@@ -4,17 +4,21 @@
 services:
   # Ejemplo de un servicio Web (Frontend / Fullstack Node.js con Yarn)
   - type: web
-    name: mi-proyecto-yarn-web
+    name: frontend-tdea-tendencias
     runtime: node
-    repo: https://github.com/usuario/mi-proyecto  # Cambia por la URL de tu repositorio de GitHub o GitLab
+    repo: https://github.com/usuario/frontend-tdea-tendencias  # Cambia por la URL de tu repositorio de GitHub o GitLab
     plan: starter                             # Opciones: free, starter, standard, etc.
-    buildCommand: yarn install && yarn build   # Comando para instalar dependencias y compilar
-    startCommand: yarn start                  # Comando para iniciar la aplicación en producción
+    buildCommand: npm ci && npm run build      # Comando para instalar dependencias y compilar
+    startCommand: node server.mjs              # Sirve el frontend y proxifica /api al backend
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
+      - key: VITE_API_URL
+        value: ""
+      - key: API_PROXY_TARGET
+        value: https://proyectoaula-tendencias20261.vercel.app
 
   # Ejemplo de un servicio de Base de Datos (Opcional, descomentar si es necesario)
   # databases:
